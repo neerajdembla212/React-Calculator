@@ -1,0 +1,11 @@
+.display-container{
+    width: 90%;
+    margin:auto;
+    border: 1px solid gray;
+    background-color: gray;
+    color: black;
+    height: 20%;
+    font-size: 5rem;
+    text-align: right;
+    padding: 10px;
+}
