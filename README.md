@@ -6,3 +6,9 @@ This project demonstrates how to create a react calculator without using `eval` 
     1. Adding a history button to go through your past calculations. 
     At the moment this app stores the calculations and displays in raw format also allows you to jump to a particular step. In future we will merge this in a single button on our calculator.
     2. Adding support for float values.
+
+# Demo
+
+You can play around with this calculator by visiting following link. Please raise a bug if you want us to improve something.
+
+https://react-calculator-phi-hazel.vercel.app/
