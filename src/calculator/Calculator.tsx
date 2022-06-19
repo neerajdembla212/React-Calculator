@@ -39,7 +39,13 @@ export const Calculator = () => {
             case '+': val = Number(state.buffer) + Number(state.result); break;
             case '-': val = Number(state.buffer) - Number(state.result); break;
             case '*': val = Number(state.buffer) * Number(state.result); break;
-            case '/': val = Number(state.buffer) / Number(state.result); break;
+            case '/': {
+                if (Number(state.result) === 0) {
+                    throw 'Cannot divide by zero';
+                }
+                val = Number(state.buffer) / Number(state.result);
+                break
+            };
         }
 
         const newState: CalculatorState = {
@@ -58,24 +64,31 @@ export const Calculator = () => {
         }))
     }
     function onButtonClick(value: string) {
-        switch (value) {
-            case 'reset': setState(initialState); break;
-            case '+':
-            case '-':
-            case '*':
-            case '/': storeOperation(value); break;
-            case '+/-': invertValue(); break;
-            case '=': performOperation(); break;
-            default: {
-                setState(s => ({
-                    result: Number(s.result + value).toString(),
-                    operation: s.operation,
-                    buffer: s.buffer
-                }));
-                break;
+        try {
+            switch (value) {
+                case 'reset': setState(initialState); break;
+                case '+':
+                case '-':
+                case '*':
+                case '/': storeOperation(value); break;
+                case '+/-': invertValue(); break;
+                case '=': performOperation(); break;
+                default: {
+                    setState(s => ({
+                        result: Number(s.result + value).toString(),
+                        operation: s.operation,
+                        buffer: s.buffer
+                    }));
+                    break;
+                }
             }
+        } catch (err: any) {
+            console.log('error ', err);
+            setState(s => ({
+                ...s,
+                result: 'Error'
+            }))
         }
-
 
     }
 
